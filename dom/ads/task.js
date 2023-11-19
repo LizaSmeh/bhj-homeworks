@@ -1,10 +1,12 @@
-const arrayElement = Array.from(document.querySelectorAll(".rotator__case"));
+let activePhrase = document.querySelector(".rotator__case_active");
+const listPhrases = document.querySelector(".rotator");
+
 setInterval(() => {
-    for(let i = 0; i<arrayElement.length; i++){
-        if(arrayElement[i].classList.contains("rotator__case_active")) {
-            arrayElement[i].classList.remove("rotator__case_active");
-         }else{
-            arrayElement[i].classList.add("rotator__case_active");
-         }
-        }             
-        },1000);
+    activePhrase.classList.remove("rotator__case_active");
+    if(activePhrase.nextElementSibling != null){
+        activePhrase = activePhrase.nextElementSibling;
+    } else{
+        activePhrase = listPhrases.firstElementChild;
+    }
+    activePhrase.classList.add("rotator__case_active");
+                    },1000);
